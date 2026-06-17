@@ -1,0 +1,235 @@
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.metric-card {
+  position: relative;
+  min-height: 154px;
+  overflow: hidden;
+}
+
+.metric-card::after {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  width: 42px;
+  height: 42px;
+  content: "";
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 30%, transparent), transparent),
+    var(--input-bg);
+}
+
+.metric-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.metric-icon {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--input-bg);
+}
+
+.metric-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.metric-card h2 {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.metric-value {
+  margin: 0;
+  font-size: clamp(1.85rem, 4vw, 2.35rem);
+  font-weight: 820;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.metric-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+  color: var(--text-soft);
+  font-size: .82rem;
+}
+
+.dashboard-main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(320px, .85fr);
+  gap: 18px;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+  gap: 18px;
+}
+
+.chart-panel {
+  min-height: 334px;
+  padding: 20px;
+}
+
+.chart-panel canvas {
+  width: 100% !important;
+  height: 246px !important;
+  max-height: 246px;
+}
+
+.chart-fallback {
+  display: grid;
+  gap: 9px;
+  min-height: 246px;
+  align-content: center;
+}
+
+.chart-fallback-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--input-bg);
+}
+
+.chart-fallback-row span {
+  color: var(--text-muted);
+}
+
+.goal-card {
+  display: grid;
+  gap: 18px;
+}
+
+.goal-number {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.goal-number strong {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1;
+}
+
+.goal-number span {
+  color: var(--text-muted);
+}
+
+.recent-list {
+  display: grid;
+  gap: 12px;
+}
+
+.recent-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--input-bg);
+}
+
+.recent-date {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  color: var(--accent-strong);
+  border-radius: var(--radius);
+  background: var(--surface-strong);
+  font-size: .72rem;
+  font-weight: 780;
+  text-transform: uppercase;
+}
+
+.recent-item strong {
+  display: block;
+  margin-bottom: 3px;
+  overflow: hidden;
+  color: var(--text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recent-item span {
+  color: var(--text-muted);
+  font-size: .84rem;
+}
+
+.quick-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.quick-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--input-bg);
+  transition: transform .2s var(--ease), border-color .2s ease;
+}
+
+.quick-link:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.quick-link span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 1180px) {
+  .metric-grid,
+  .chart-grid,
+  .dashboard-main-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .metric-grid,
+  .chart-grid,
+  .dashboard-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recent-item {
+    grid-template-columns: auto 1fr;
+  }
+
+  .recent-item .chip {
+    grid-column: 1 / -1;
+    width: fit-content;
+  }
+}

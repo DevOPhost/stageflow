@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <title>Relatórios | StageFlow</title>
+  <link rel="icon" href="../assets/images/logo-stageflow.svg?v=14" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/main.css?v=13" rel="stylesheet">
+  <link href="../assets/css/components.css?v=14" rel="stylesheet">
+  <link href="../assets/css/pages/reports.css?v=12" rel="stylesheet">
+  <style id="stageflow-critical-visible">body{opacity:1!important;transform:none!important;visibility:visible!important}.main-content{visibility:visible!important}.app-shell{min-height:100vh}</style></head>
+<body data-page="relatorios">
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar"></aside>
+    <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-start">
+          <button class="icon-button sidebar-toggle" type="button" data-sidebar-toggle aria-label="Abrir menu">
+            <i data-lucide="menu"></i>
+          </button>
+          <div>
+            <span class="page-kicker">Documentos</span>
+            <h1>Relatórios</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-button" type="button" data-theme-toggle data-bs-toggle="tooltip" title="Alternar tema">
+            <i data-lucide="sun-moon"></i>
+          </button>
+          <div class="profile-chip">
+            <span id="topbarAvatar" class="avatar">SF</span>
+            <div>
+              <span id="topbarUserName">StageFlow</span>
+              <small id="topbarUserRole">Coordenação</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="dashboard-main-grid">
+        <aside class="surface-card">
+          <div class="section-heading">
+            <div>
+              <h2>Gerador</h2>
+              <p>Documentos de acompanhamento acadêmico.</p>
+            </div>
+          </div>
+          <form id="reportForm" class="d-grid gap-3">
+            <div>
+              <label class="form-label" for="reportType">Tipo de relatório</label>
+              <select id="reportType" class="form-select" name="type">
+                <option value="geral">Relatório geral</option>
+                <option value="individual">Relatório individual</option>
+                <option value="atividades">Relatório de atividades</option>
+                <option value="frequencia">Relatório de frequência</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label" for="reportStudent">Estagiário</label>
+              <select id="reportStudent" class="form-select" name="student">
+                <option>Leonardo Farias Martins</option>
+                <option>Ana Clara Souza</option>
+                <option>Rafael Mendes Oliveira</option>
+                <option>Camila Fernanda Rocha</option>
+              </select>
+            </div>
+            <div class="report-meta-grid">
+              <div>
+                <label class="form-label" for="reportStart">Início</label>
+                <input id="reportStart" class="form-control" name="start" type="date">
+              </div>
+              <div>
+                <label class="form-label" for="reportEnd">Fim</label>
+                <input id="reportEnd" class="form-control" name="end" type="date">
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-primary" type="submit">
+                <i data-lucide="refresh-cw"></i> Gerar
+              </button>
+              <button class="btn btn-outline-light" type="button" id="exportPdfButton">
+                <i data-lucide="download"></i> PDF
+              </button>
+            </div>
+          </form>
+        </aside>
+
+        <article class="surface-card">
+          <div class="section-heading">
+            <div>
+              <h2>Prévia</h2>
+              <p>Síntese gerada com os registros locais do StageFlow.</p>
+            </div>
+          </div>
+          <div id="reportPreview" class="report-preview">
+            <div>
+              <p style="color:#667085;">StageFlow · Versão pública de portfólio</p>
+              <h2>Relatório Geral de Estágios</h2>
+              <p>UNIC - Universidade de Cuiabá</p>
+            </div>
+            <div>
+              <div class="report-line"><strong>Estagiários cadastrados</strong><span>6</span></div>
+              <div class="report-line"><strong>Estagiários ativos</strong><span>4</span></div>
+              <div class="report-line"><strong>Supervisores cadastrados</strong><span>4</span></div>
+              <div class="report-line"><strong>Atividades no período</strong><span>21</span></div>
+              <div class="report-line"><strong>Horas em atividades</strong><span>126h</span></div>
+              <div class="report-line"><strong>Horas em frequência</strong><span>126h</span></div>
+            </div>
+            <section>
+              <h3>Atividades recentes</h3>
+              <ul class="mt-2 mb-0">
+                <li>17/09/2025 - Leonardo Farias Martins: entrega final da versão de apresentação.</li>
+                <li>16/09/2025 - Rafael Mendes Oliveira: consolidação das pendências acadêmicas.</li>
+                <li>15/09/2025 - Camila Fernanda Rocha: revisão do material de apresentação.</li>
+              </ul>
+            </section>
+            <p class="report-disclaimer">Esta versão pública utiliza registros de apresentação para preservar dados reais e permitir a navegação completa pelas funcionalidades.</p>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <div id="toastRoot" class="app-toast-root" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="confirmModalTitle">Confirmar ação</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p id="confirmModalMessage" class="mb-0 muted">Deseja continuar?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" id="confirmModalCancel" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="confirmModalConfirm">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script type="module" src="../assets/js/pages/relatorios.js?v=14"></script>
+  <script src="../assets/js/rescuePanel.js?v=20"></script>
+</body>
+</html>
+

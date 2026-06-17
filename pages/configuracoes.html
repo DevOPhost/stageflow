@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <title>Configurações | StageFlow</title>
+  <link rel="icon" href="../assets/images/logo-stageflow.svg?v=14" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/main.css?v=13" rel="stylesheet">
+  <link href="../assets/css/components.css?v=14" rel="stylesheet">
+  <link href="../assets/css/pages/forms.css?v=12" rel="stylesheet">
+  <link href="../assets/css/pages/settings.css?v=12" rel="stylesheet">
+  <style id="stageflow-critical-visible">body{opacity:1!important;transform:none!important;visibility:visible!important}.main-content{visibility:visible!important}.app-shell{min-height:100vh}</style></head>
+<body data-page="configuracoes">
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar"></aside>
+    <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-start">
+          <button class="icon-button sidebar-toggle" type="button" data-sidebar-toggle aria-label="Abrir menu">
+            <i data-lucide="menu"></i>
+          </button>
+          <div>
+            <span class="page-kicker">Preferências</span>
+            <h1>Configurações</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-button" type="button" data-theme-toggle data-bs-toggle="tooltip" title="Alternar tema">
+            <i data-lucide="sun-moon"></i>
+          </button>
+          <div class="profile-chip">
+            <span id="topbarAvatar" class="avatar">SF</span>
+            <div>
+              <span id="topbarUserName">StageFlow</span>
+              <small id="topbarUserRole">Coordenação</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="settings-grid">
+        <article class="surface-card">
+          <div class="section-heading">
+            <div>
+              <h2>Perfil do projeto</h2>
+              <p>Contexto acadêmico exibido na versão pública de portfólio.</p>
+            </div>
+          </div>
+          <div class="project-profile">
+            <img src="../assets/images/logo-unic-mark.png?v=1" alt="UNIC">
+            <div>
+              <span class="page-kicker">Projeto acadêmico de inovação</span>
+              <h2 class="mb-1 fs-5">StageFlow</h2>
+              <p class="mb-0 muted">Sistema Web de Gestão de Estágios desenvolvido para fins acadêmicos e de portfólio.</p>
+            </div>
+          </div>
+          <div id="projectFacts" class="project-facts mb-4">
+            <div class="project-fact"><span>Nome do sistema</span><strong>StageFlow</strong></div>
+            <div class="project-fact"><span>Tipo</span><strong>Proposta acadêmica de inovação</strong></div>
+            <div class="project-fact"><span>Instituição</span><strong>UNIC - Universidade de Cuiabá</strong></div>
+            <div class="project-fact"><span>Curso</span><strong>Ciência da Computação</strong></div>
+            <div class="project-fact"><span>Finalidade</span><strong>Apoio à gestão digital de estágios acadêmicos</strong></div>
+            <div class="project-fact"><span>Status</span><strong>Versão pública de portfólio</strong></div>
+          </div>
+
+          <form id="profileForm" class="row g-3">
+            <div class="col-md-7">
+              <label class="form-label" for="profileName">Responsável acadêmico</label>
+              <input id="profileName" class="form-control" name="name" value="Leonardo Farias Martins" required>
+            </div>
+            <div class="col-md-5">
+              <label class="form-label" for="profileRole">Perfil</label>
+              <input id="profileRole" class="form-control" name="role" value="Estudante de Ciência da Computação" required>
+            </div>
+            <div class="col-md-7">
+              <label class="form-label" for="profileEmail">Email</label>
+              <input id="profileEmail" class="form-control" name="email" type="email" value="leonardo.farias@academico.unic.br" required>
+            </div>
+            <div class="col-md-5">
+              <label class="form-label" for="profileInstitution">Instituição</label>
+              <input id="profileInstitution" class="form-control" name="institution" value="UNIC - Universidade de Cuiabá" required>
+            </div>
+            <div class="col-md-5">
+              <label class="form-label" for="profileGoal">Meta de horas</label>
+              <input id="profileGoal" class="form-control" name="goalHours" type="number" min="1" step="1" value="360" required>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">
+                <i data-lucide="save"></i> Salvar perfil
+              </button>
+            </div>
+          </form>
+        </article>
+
+        <aside class="page-grid">
+          <article class="surface-card">
+            <div class="section-heading">
+              <div>
+                <h2>Tema</h2>
+                <p>Preferência visual da coordenação.</p>
+              </div>
+            </div>
+            <div class="settings-option">
+              <span class="theme-swatch"><i data-lucide="sun-moon"></i></span>
+              <button class="btn btn-outline-light" type="button" data-theme-toggle>
+                Alternar tema
+              </button>
+            </div>
+          </article>
+
+          <article class="surface-card">
+            <div class="section-heading">
+              <div>
+                <h2>Preferências</h2>
+                <p>Ajustes de acompanhamento usados na rotina da coordenação.</p>
+              </div>
+            </div>
+            <form id="preferencesForm" class="d-grid gap-3">
+              <div>
+                <label class="form-label" for="weekGoal">Meta semanal</label>
+                <input id="weekGoal" class="form-control" name="weekGoal" type="number" min="1" step="1" value="30">
+              </div>
+              <div>
+                <label class="form-label" for="density">Densidade</label>
+                <select id="density" class="form-select" name="density">
+                  <option value="comfortable">Confortável</option>
+                  <option value="compact">Compacta</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label" for="cardView">Visualização dos cards</label>
+                <select id="cardView" class="form-select" name="cardView">
+                  <option value="analitica">Analítica</option>
+                  <option value="compacta">Compacta</option>
+                </select>
+              </div>
+              <div class="form-check form-switch">
+                <input id="animations" class="form-check-input" name="animations" type="checkbox" checked>
+                <label class="form-check-label" for="animations">Animações da interface</label>
+              </div>
+              <div class="form-check form-switch">
+                <input id="notifications" class="form-check-input" name="notifications" type="checkbox" checked>
+                <label class="form-check-label" for="notifications">Notificações da interface</label>
+              </div>
+              <button class="btn btn-primary" type="submit">
+                <i data-lucide="sliders-horizontal"></i> Salvar preferências
+              </button>
+            </form>
+          </article>
+
+          <article class="surface-card">
+            <div class="section-heading">
+              <div>
+                <h2>Registros locais</h2>
+                <p>Base de apresentação acadêmica para navegação pelo sistema.</p>
+              </div>
+            </div>
+            <div class="form-note">
+              <i data-lucide="info"></i>
+              <span>Os registros locais servem para apresentar o fluxo de acompanhamento acadêmico do StageFlow.</span>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-outline-light" type="button" id="resetDataButton">
+                <i data-lucide="rotate-ccw"></i> Restaurar base de apresentação
+              </button>
+              <button class="btn btn-outline-light" type="button" id="clearDataButton">
+                <i data-lucide="eraser"></i> Limpar registros locais
+              </button>
+            </div>
+          </article>
+
+          <article class="surface-card">
+            <div class="section-heading">
+              <div>
+                <h2>Sobre</h2>
+                <p>Resumo técnico da versão pública.</p>
+              </div>
+            </div>
+            <div class="d-grid gap-2">
+              <span class="chip"><i data-lucide="badge-check"></i> Versão acadêmica para portfólio</span>
+              <span class="chip"><i data-lucide="code-2"></i> HTML, CSS, JavaScript, Bootstrap, Chart.js, jsPDF</span>
+              <a class="btn btn-outline-light" id="githubLink" href="./projeto.html">
+                <i data-lucide="file-text"></i> Apresentação do projeto
+              </a>
+            </div>
+          </article>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <div id="toastRoot" class="app-toast-root" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="confirmModalTitle">Confirmar ação</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p id="confirmModalMessage" class="mb-0 muted">Deseja continuar?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" id="confirmModalCancel" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="confirmModalConfirm">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="module" src="../assets/js/pages/configuracoes.js?v=14"></script>
+  <script src="../assets/js/rescuePanel.js?v=20"></script>
+</body>
+</html>
+
+

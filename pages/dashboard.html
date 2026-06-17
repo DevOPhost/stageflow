@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <title>Dashboard | StageFlow</title>
+  <link rel="icon" href="../assets/images/logo-stageflow.svg?v=14" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/css/main.css?v=13" rel="stylesheet">
+  <link href="../assets/css/components.css?v=14" rel="stylesheet">
+  <link href="../assets/css/pages/dashboard.css?v=12" rel="stylesheet">
+  <style id="stageflow-critical-visible">body{opacity:1!important;transform:none!important;visibility:visible!important}.main-content{visibility:visible!important}.app-shell{min-height:100vh}</style></head>
+<body data-page="dashboard">
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar"></aside>
+    <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-start">
+          <button class="icon-button sidebar-toggle" type="button" data-sidebar-toggle aria-label="Abrir menu">
+            <i data-lucide="menu"></i>
+          </button>
+          <div>
+            <span class="page-kicker">Visão geral</span>
+            <h1>Dashboard administrativo</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="icon-button" type="button" data-theme-toggle data-bs-toggle="tooltip" title="Alternar tema">
+            <i data-lucide="sun-moon"></i>
+          </button>
+          <div class="profile-chip">
+            <span id="topbarAvatar" class="avatar">SF</span>
+            <div>
+              <span id="topbarUserName">StageFlow</span>
+              <small id="topbarUserRole">Coordenação</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="page-grid">
+        <div id="metricGrid" class="metric-grid">
+          <article class="surface-card metric-card">
+            <div class="metric-top">
+              <div><h2>Estagiários ativos</h2></div>
+              <span class="metric-icon"><i data-lucide="graduation-cap"></i></span>
+            </div>
+            <p class="metric-value">4</p>
+            <div class="metric-foot"><span>em acompanhamento</span><span class="mini-trend">6 cadastrados</span></div>
+          </article>
+          <article class="surface-card metric-card">
+            <div class="metric-top">
+              <div><h2>Supervisores</h2></div>
+              <span class="metric-icon"><i data-lucide="briefcase-business"></i></span>
+            </div>
+            <p class="metric-value">4</p>
+            <div class="metric-foot"><span>rede de apoio</span><span class="mini-trend">base UNIC</span></div>
+          </article>
+          <article class="surface-card metric-card">
+            <div class="metric-top">
+              <div><h2>Atividades</h2></div>
+              <span class="metric-icon"><i data-lucide="clipboard-list"></i></span>
+            </div>
+            <p class="metric-value">21</p>
+            <div class="metric-foot"><span>registros acompanhados</span><span class="mini-trend">20/08 a 17/09</span></div>
+          </article>
+          <article class="surface-card metric-card">
+            <div class="metric-top">
+              <div><h2>Horas acompanhadas</h2></div>
+              <span class="metric-icon"><i data-lucide="timer"></i></span>
+            </div>
+            <p class="metric-value">126h</p>
+            <div class="metric-foot"><span>em atividades</span><span class="mini-trend">35% da carga</span></div>
+          </article>
+        </div>
+
+        <div class="dashboard-main-grid">
+          <article class="surface-card goal-card">
+            <div class="section-heading">
+              <div>
+                <h2>Meta geral de horas</h2>
+                <p>Acompanhamento consolidado das horas registradas nas atividades do estágio.</p>
+              </div>
+              <span class="chip"><i data-lucide="target"></i> Semestre 2025.2</span>
+            </div>
+            <div id="goalSummary">
+              <div class="goal-number">
+                <strong>35%</strong>
+                <span>da carga prevista concluída</span>
+              </div>
+              <div class="progress" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width:35%"></div>
+              </div>
+              <div class="d-flex flex-wrap justify-content-between gap-2 muted">
+                <span>126h registradas</span>
+                <span>234h restantes</span>
+                <span>360h previstas</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="surface-card">
+            <div class="section-heading">
+              <div>
+                <h2>Resumo do estágio</h2>
+                <p>Panorama acadêmico do acompanhamento institucional.</p>
+              </div>
+            </div>
+            <div id="stageSummary" class="quick-panel">
+              <div class="settings-option">
+                <span class="muted">Instituição</span>
+                <strong>UNIC - Universidade de Cuiabá</strong>
+              </div>
+              <div class="settings-option">
+                <span class="muted">Curso</span>
+                <strong>Ciência da Computação</strong>
+              </div>
+              <div class="settings-option">
+                <span class="muted">Status da versão</span>
+                <strong>Versão pública de portfólio</strong>
+              </div>
+              <div class="settings-option">
+                <span class="muted">Frequência registrada</span>
+                <strong>126h</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="surface-card">
+            <div class="section-heading">
+              <div>
+                <h2>Ações rápidas</h2>
+                <p>Fluxos essenciais do acompanhamento.</p>
+              </div>
+            </div>
+            <div class="quick-panel">
+              <a class="quick-link" href="./estagiarios.html">
+                <span><i data-lucide="user-plus"></i> Novo estagiário</span>
+                <i data-lucide="arrow-right"></i>
+              </a>
+              <a class="quick-link" href="./atividades.html">
+                <span><i data-lucide="plus-circle"></i> Registrar atividade</span>
+                <i data-lucide="arrow-right"></i>
+              </a>
+              <a class="quick-link" href="./relatorios.html">
+                <span><i data-lucide="download"></i> Exportar relatório</span>
+                <i data-lucide="arrow-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <article class="surface-card">
+            <div class="section-heading">
+              <div>
+                <h2>Próximas entregas</h2>
+                <p>Marcos do acompanhamento acadêmico.</p>
+              </div>
+            </div>
+            <div id="upcomingDeliveries" class="recent-list">
+              <article class="recent-item">
+                <div class="recent-date">22 set</div>
+                <div><strong>Validação da ficha de acompanhamento</strong><span>Camila Fernanda Rocha · 22/09/2025</span></div>
+                <span class="status-pill warning">Pendente de validação</span>
+              </article>
+              <article class="recent-item">
+                <div class="recent-date">24 set</div>
+                <div><strong>Revisão do relatório parcial</strong><span>Leonardo Farias Martins · 24/09/2025</span></div>
+                <span class="status-pill success">Em acompanhamento</span>
+              </article>
+            </div>
+          </article>
+
+          <article class="surface-card">
+            <div class="section-heading">
+              <div>
+                <h2>Pendências acadêmicas</h2>
+                <p>Acompanhamentos que precisam de atenção na proposta.</p>
+              </div>
+            </div>
+            <div id="academicPending" class="recent-list">
+              <article class="recent-item">
+                <div class="recent-date">23 set</div>
+                <div><strong>Assinatura do termo aditivo</strong><span>Camila Fernanda Rocha · prazo 23/09/2025</span></div>
+                <span class="chip">Alta</span>
+              </article>
+              <article class="recent-item">
+                <div class="recent-date">25 set</div>
+                <div><strong>Conferência do relatório de frequência</strong><span>Rafael Mendes Oliveira · prazo 25/09/2025</span></div>
+                <span class="chip">Média</span>
+              </article>
+            </div>
+          </article>
+        </div>
+
+        <div class="chart-grid">
+          <article class="chart-panel">
+            <div class="section-heading">
+              <div>
+                <h2>Horas por estagiário</h2>
+                <p>Distribuição das horas registradas nas atividades.</p>
+              </div>
+            </div>
+            <canvas id="hoursChart" aria-label="Gráfico de horas por estagiário"></canvas>
+            <div class="chart-fallback">
+              <div class="chart-fallback-row"><span>Leonardo</span><strong>30h</strong></div>
+              <div class="chart-fallback-row"><span>Ana Clara</span><strong>24h</strong></div>
+              <div class="chart-fallback-row"><span>Rafael</span><strong>18h</strong></div>
+              <div class="chart-fallback-row"><span>Bruno</span><strong>18h</strong></div>
+              <div class="chart-fallback-row"><span>Camila</span><strong>18h</strong></div>
+              <div class="chart-fallback-row"><span>Matheus</span><strong>18h</strong></div>
+            </div>
+          </article>
+
+          <article class="chart-panel">
+            <div class="section-heading">
+              <div>
+                <h2>Status dos estudantes</h2>
+                <p>Composição atual da base cadastrada.</p>
+              </div>
+            </div>
+            <canvas id="statusChart" aria-label="Gráfico de status dos estagiários"></canvas>
+            <div class="chart-fallback">
+              <div class="chart-fallback-row"><span>Ativo</span><strong>3</strong></div>
+              <div class="chart-fallback-row"><span>Em acompanhamento</span><strong>1</strong></div>
+              <div class="chart-fallback-row"><span>Pendente de validação</span><strong>1</strong></div>
+              <div class="chart-fallback-row"><span>Finalizado</span><strong>1</strong></div>
+            </div>
+          </article>
+
+          <article class="chart-panel">
+            <div class="section-heading">
+              <div>
+                <h2>Horas por semana</h2>
+                <p>Evolução recente das horas registradas.</p>
+              </div>
+            </div>
+            <canvas id="weeklyChart" aria-label="Gráfico de horas por semana"></canvas>
+            <div class="chart-fallback">
+              <div class="chart-fallback-row"><span>Sem. 34</span><strong>18h</strong></div>
+              <div class="chart-fallback-row"><span>Sem. 35</span><strong>30h</strong></div>
+              <div class="chart-fallback-row"><span>Sem. 36</span><strong>30h</strong></div>
+              <div class="chart-fallback-row"><span>Sem. 37</span><strong>30h</strong></div>
+              <div class="chart-fallback-row"><span>Sem. 38</span><strong>18h</strong></div>
+            </div>
+          </article>
+
+          <article class="chart-panel">
+            <div class="section-heading">
+              <div>
+                <h2>Atividades por tipo</h2>
+                <p>Distribuição dos registros por natureza da entrega.</p>
+              </div>
+            </div>
+            <canvas id="typeChart" aria-label="Gráfico de atividades por tipo"></canvas>
+            <div class="chart-fallback">
+              <div class="chart-fallback-row"><span>Frontend</span><strong>2</strong></div>
+              <div class="chart-fallback-row"><span>Dashboard</span><strong>2</strong></div>
+              <div class="chart-fallback-row"><span>Documentação</span><strong>2</strong></div>
+              <div class="chart-fallback-row"><span>Processos</span><strong>2</strong></div>
+              <div class="chart-fallback-row"><span>Demais tipos</span><strong>13</strong></div>
+            </div>
+          </article>
+        </div>
+
+        <article class="surface-card">
+          <div class="section-heading">
+            <div>
+              <h2>Últimas atividades</h2>
+              <p>Registros recentes lançados pelos estudantes e validados pela coordenação.</p>
+            </div>
+            <a class="btn btn-outline-light" href="./atividades.html">
+              <i data-lucide="clipboard-list"></i> Ver atividades
+            </a>
+          </div>
+          <div id="recentActivities" class="recent-list">
+            <article class="recent-item">
+              <div class="recent-date">17 set</div>
+              <div><strong>Entrega final da versão de apresentação</strong><span>Leonardo Farias Martins · Entrega · 17/09/2025 às 08:00</span></div>
+              <span class="chip">6h</span>
+            </article>
+            <article class="recent-item">
+              <div class="recent-date">16 set</div>
+              <div><strong>Consolidação das pendências acadêmicas</strong><span>Rafael Mendes Oliveira · Processos · 16/09/2025 às 08:00</span></div>
+              <span class="chip">6h</span>
+            </article>
+            <article class="recent-item">
+              <div class="recent-date">15 set</div>
+              <div><strong>Revisão do material de apresentação</strong><span>Camila Fernanda Rocha · Documentação · 15/09/2025 às 08:00</span></div>
+              <span class="chip">6h</span>
+            </article>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <div id="toastRoot" class="app-toast-root" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="confirmModalTitle">Confirmar ação</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p id="confirmModalMessage" class="mb-0 muted">Deseja continuar?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" id="confirmModalCancel" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="confirmModalConfirm">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script type="module" src="../assets/js/pages/dashboard.js?v=14"></script>
+  <script src="../assets/js/rescuePanel.js?v=20"></script>
+</body>
+</html>
+

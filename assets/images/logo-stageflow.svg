@@ -1,0 +1,25 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">StageFlow</title>
+  <desc id="desc">Marca minimalista do StageFlow: um fluxo contínuo em forma de S para representar a jornada do estágio.</desc>
+  <defs>
+    <linearGradient id="sf-background" x1="8" y1="7" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#151B23"/>
+      <stop offset="1" stop-color="#0B0F14"/>
+    </linearGradient>
+    <linearGradient id="sf-stroke" x1="18" y1="18" x2="46" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#75E6FF"/>
+      <stop offset=".56" stop-color="#39C7F4"/>
+      <stop offset="1" stop-color="#55D77A"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="7" y="7" width="50" height="50" rx="15" fill="url(#sf-background)"/>
+  <rect x="7.5" y="7.5" width="49" height="49" rx="14.5" stroke="white" stroke-opacity=".1"/>
+
+  <path
+    d="M43 18H28.5C23.8 18 20 21.4 20 25.6C20 29.9 23.8 33.2 28.5 33.2H35.5C40.2 33.2 44 36.6 44 40.8C44 45.1 40.2 48 35.5 48H21"
+    stroke="url(#sf-stroke)"
+    stroke-width="6.4"
+    stroke-linecap="round"
+    stroke-linejoin="round"/>
+</svg>
