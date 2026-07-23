@@ -16,7 +16,7 @@ const mergeState = (stored) => {
   const defaults = clone(demoRecords);
   const state = stored && typeof stored === 'object' ? stored : {};
   const collectionOrDefault = (name) => (
-    Array.isArray(state[name]) && state[name].length > 0 ? state[name] : defaults[name]
+    Array.isArray(state[name]) ? state[name] : defaults[name]
   );
 
   const merged = {

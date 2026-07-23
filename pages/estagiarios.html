@@ -71,48 +71,12 @@
         </div>
 
         <div class="data-panel">
-          <div id="studentsTableWrap" class="table-responsive">
-            <table class="table table-hover align-middle">
-              <thead>
-                <tr>
-                  <th>Estagiário</th>
-                  <th>Curso</th>
-                  <th>Contato</th>
-                  <th>Status</th>
-                  <th class="text-end">Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><div class="entity-title"><strong>Leonardo Farias Martins</strong><small>Matrícula 202310452</small></div></td>
-                  <td>Ciência da Computação</td>
-                  <td><div class="entity-title"><span>leonardo.farias@academico.unic.br</span><small>(65) 99214-3087</small></div></td>
-                  <td><span class="status-pill success">Ativo</span></td>
-                  <td class="text-end"><span class="chip">Editar / excluir via sistema</span></td>
-                </tr>
-                <tr>
-                  <td><div class="entity-title"><strong>Ana Clara Souza</strong><small>Matrícula 202311087</small></div></td>
-                  <td>Ciência da Computação</td>
-                  <td><div class="entity-title"><span>ana.souza@academico.unic.br</span><small>(65) 98422-7610</small></div></td>
-                  <td><span class="status-pill success">Ativo</span></td>
-                  <td class="text-end"><span class="chip">Editar / excluir via sistema</span></td>
-                </tr>
-                <tr>
-                  <td><div class="entity-title"><strong>Rafael Mendes Oliveira</strong><small>Matrícula 202209744</small></div></td>
-                  <td>Sistemas de Informação</td>
-                  <td><div class="entity-title"><span>rafael.oliveira@academico.unic.br</span><small>(65) 99631-4582</small></div></td>
-                  <td><span class="status-pill success">Em acompanhamento</span></td>
-                  <td class="text-end"><span class="chip">Editar / excluir via sistema</span></td>
-                </tr>
-                <tr>
-                  <td><div class="entity-title"><strong>Camila Fernanda Rocha</strong><small>Matrícula 202410318</small></div></td>
-                  <td>Ciência da Computação</td>
-                  <td><div class="entity-title"><span>camila.rocha@academico.unic.br</span><small>(65) 99308-1265</small></div></td>
-                  <td><span class="status-pill warning">Pendente de validação</span></td>
-                  <td class="text-end"><span class="chip">Editar / excluir via sistema</span></td>
-                </tr>
-              </tbody>
-            </table>
+          <div id="studentsTableWrap" class="table-responsive" aria-live="polite" aria-busy="true">
+            <div class="empty-state">
+              <div class="empty-icon"><i data-lucide="loader-circle"></i></div>
+              <h2>Carregando cadastros</h2>
+              <p>Aguarde enquanto os dados locais são preparados.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -190,7 +154,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script type="module" src="../assets/js/pages/estagiarios.js?v=14"></script>
+  <script type="module" src="../assets/js/pages/estagiarios.js?v=15"></script>
   <script src="../assets/js/rescuePanel.js?v=20"></script>
 </body>
 </html>

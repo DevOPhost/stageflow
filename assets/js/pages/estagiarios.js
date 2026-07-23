@@ -3,7 +3,7 @@ import {
   deleteRecord,
   getCollection,
   updateRecord
-} from '../storage.js?v=14';
+} from '../storage.js?v=15';
 import {
   $,
   confirmAction,
@@ -25,6 +25,8 @@ import {
 const tableWrap = $('#studentsTableWrap');
 const form = $('#studentForm');
 const modal = createModal($('#studentModal'));
+const registrationField = $('#studentRegistration');
+const emailField = $('#studentEmail');
 
 let query = '';
 let statusFilter = '';
@@ -42,7 +44,21 @@ const getFilteredStudents = () => {
 };
 
 const renderStudents = () => {
-  const students = getFilteredStudents();
+  let students;
+
+  try {
+    students = getFilteredStudents();
+  } catch (error) {
+    console.error('StageFlow: não foi possível carregar os estagiários.', error);
+    renderEmptyState(tableWrap, {
+      title: 'Não foi possível carregar os cadastros',
+      text: 'Verifique se o armazenamento local está disponível e recarregue a página.',
+      icon: 'triangle-alert'
+    });
+    tableWrap.setAttribute('aria-busy', 'false');
+    notify('Erro ao carregar os cadastros de estagiários.', 'danger');
+    return;
+  }
 
   if (!students.length) {
     renderEmptyState(tableWrap, {
@@ -50,6 +66,7 @@ const renderStudents = () => {
       text: 'Revise a pesquisa ou cadastre um estudante para iniciar o acompanhamento.',
       icon: 'graduation-cap'
     });
+    tableWrap.setAttribute('aria-busy', 'false');
     return;
   }
 
@@ -99,6 +116,7 @@ const renderStudents = () => {
 
   refreshIcons();
   initTooltips();
+  tableWrap.setAttribute('aria-busy', 'false');
 };
 
 const openCreateModal = () => {
@@ -129,14 +147,48 @@ const deleteStudent = async (id) => {
 
   if (!confirmed) return;
 
-  deleteRecord('estagiarios', id);
-  notify('Estagiário removido do cadastro.', 'success');
-  renderStudents();
+  try {
+    deleteRecord('estagiarios', id);
+    notify('Estagiário removido do cadastro.', 'success');
+    renderStudents();
+  } catch (error) {
+    console.error('StageFlow: não foi possível excluir o estagiário.', error);
+    notify('Não foi possível excluir o estagiário. Tente novamente.', 'danger');
+  }
 };
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const data = readForm(form);
+  let students;
+
+  try {
+    students = getCollection('estagiarios');
+  } catch (error) {
+    console.error('StageFlow: não foi possível acessar os cadastros.', error);
+    notify('Não foi possível acessar os dados locais. Verifique o navegador e tente novamente.', 'danger');
+    return;
+  }
+
+  const normalizedRegistration = data.matricula.trim().toLocaleLowerCase('pt-BR');
+  const normalizedEmail = data.email.trim().toLocaleLowerCase('pt-BR');
+  const duplicateRegistration = students.some((student) => (
+    student.id !== data.id
+    && student.matricula?.trim().toLocaleLowerCase('pt-BR') === normalizedRegistration
+  ));
+  const duplicateEmail = students.some((student) => (
+    student.id !== data.id
+    && student.email?.trim().toLocaleLowerCase('pt-BR') === normalizedEmail
+  ));
+
+  registrationField.setCustomValidity(duplicateRegistration ? 'Esta matrícula já está cadastrada.' : '');
+  emailField.setCustomValidity(duplicateEmail ? 'Este e-mail já está cadastrado.' : '');
+
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
   const payload = {
     nome: data.nome.trim(),
     matricula: data.matricula.trim(),
@@ -146,16 +198,25 @@ form.addEventListener('submit', (event) => {
     status: data.status
   };
 
-  if (data.id) {
-    updateRecord('estagiarios', data.id, payload);
-    notify('Cadastro do estagiário atualizado.');
-  } else {
-    createRecord('estagiarios', payload, 'est');
-    notify('Estagiário cadastrado.');
-  }
+  try {
+    if (data.id) {
+      updateRecord('estagiarios', data.id, payload);
+      notify('Cadastro do estagiário atualizado.', 'success');
+    } else {
+      createRecord('estagiarios', payload, 'est');
+      notify('Estagiário cadastrado.', 'success');
+    }
 
-  modal.hide();
-  renderStudents();
+    modal.hide();
+    renderStudents();
+  } catch (error) {
+    console.error('StageFlow: não foi possível salvar o estagiário.', error);
+    notify('Não foi possível salvar o cadastro. Verifique o navegador e tente novamente.', 'danger');
+  }
+});
+
+[registrationField, emailField].forEach((field) => {
+  field.addEventListener('input', () => field.setCustomValidity(''));
 });
 
 tableWrap.addEventListener('click', (event) => {
