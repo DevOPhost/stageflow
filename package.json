@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "serve": "python -m http.server 5500"
+    "serve": "python -m http.server 5500",
+    "test": "node --test",
+    "check": "node --check assets/js/studentValidation.js && node --check assets/js/pages/estagiarios.js && node --test"
   }
 }
