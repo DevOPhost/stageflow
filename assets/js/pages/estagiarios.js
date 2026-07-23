@@ -43,6 +43,11 @@ const getFilteredStudents = () => {
   return sortByField(students, sortField);
 };
 
+const clearDuplicateValidity = () => {
+  registrationField.setCustomValidity('');
+  emailField.setCustomValidity('');
+};
+
 const renderStudents = () => {
   let students;
 
@@ -121,6 +126,7 @@ const renderStudents = () => {
 
 const openCreateModal = () => {
   form.reset();
+  clearDuplicateValidity();
   form.elements.id.value = '';
   $('#studentModalTitle').textContent = 'Novo estagiário';
   modal.show();
@@ -131,6 +137,7 @@ const openEditModal = (id) => {
   if (!student) return;
 
   form.reset();
+  clearDuplicateValidity();
   fillForm(form, student);
   $('#studentModalTitle').textContent = 'Editar estagiário';
   modal.show();
