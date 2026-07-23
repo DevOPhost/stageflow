@@ -4,6 +4,7 @@ import {
   getCollection,
   updateRecord
 } from '../storage.js?v=15';
+import { validateStudentInput } from '../studentValidation.js?v=16';
 import {
   $,
   confirmAction,
@@ -25,8 +26,8 @@ import {
 const tableWrap = $('#studentsTableWrap');
 const form = $('#studentForm');
 const modal = createModal($('#studentModal'));
-const registrationField = $('#studentRegistration');
-const emailField = $('#studentEmail');
+const submitButton = $('#studentSubmitButton');
+const submitButtonLabel = submitButton.textContent;
 
 let query = '';
 let statusFilter = '';
@@ -43,9 +44,22 @@ const getFilteredStudents = () => {
   return sortByField(students, sortField);
 };
 
-const clearDuplicateValidity = () => {
-  registrationField.setCustomValidity('');
-  emailField.setCustomValidity('');
+const clearValidity = () => {
+  [...form.elements].forEach((field) => field.setCustomValidity?.(''));
+};
+
+const applyValidationErrors = (errors) => {
+  clearValidity();
+
+  Object.entries(errors).forEach(([fieldName, message]) => {
+    form.elements[fieldName]?.setCustomValidity(message);
+  });
+};
+
+const setSaving = (isSaving) => {
+  form.setAttribute('aria-busy', String(isSaving));
+  submitButton.disabled = isSaving;
+  submitButton.textContent = isSaving ? 'Salvando...' : submitButtonLabel;
 };
 
 const renderStudents = () => {
@@ -126,25 +140,43 @@ const renderStudents = () => {
 
 const openCreateModal = () => {
   form.reset();
-  clearDuplicateValidity();
+  clearValidity();
   form.elements.id.value = '';
   $('#studentModalTitle').textContent = 'Novo estagiário';
   modal.show();
 };
 
 const openEditModal = (id) => {
-  const student = getCollection('estagiarios').find((item) => item.id === id);
+  let student;
+
+  try {
+    student = getCollection('estagiarios').find((item) => item.id === id);
+  } catch (error) {
+    console.error('StageFlow: não foi possível abrir o cadastro para edição.', error);
+    notify('Não foi possível acessar o cadastro. Verifique o navegador e tente novamente.', 'danger');
+    return;
+  }
+
   if (!student) return;
 
   form.reset();
-  clearDuplicateValidity();
+  clearValidity();
   fillForm(form, student);
   $('#studentModalTitle').textContent = 'Editar estagiário';
   modal.show();
 };
 
 const deleteStudent = async (id) => {
-  const student = getCollection('estagiarios').find((item) => item.id === id);
+  let student;
+
+  try {
+    student = getCollection('estagiarios').find((item) => item.id === id);
+  } catch (error) {
+    console.error('StageFlow: não foi possível acessar o cadastro para exclusão.', error);
+    notify('Não foi possível acessar o cadastro. Verifique o navegador e tente novamente.', 'danger');
+    return;
+  }
+
   const confirmed = await confirmAction({
     title: 'Excluir estagiário',
     message: `Remover ${student?.nome ?? 'este estagiário'} do cadastro? As atividades lançadas continuarão preservadas.`,
@@ -164,7 +196,7 @@ const deleteStudent = async (id) => {
   }
 };
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const data = readForm(form);
   let students;
@@ -177,40 +209,24 @@ form.addEventListener('submit', (event) => {
     return;
   }
 
-  const normalizedRegistration = data.matricula.trim().toLocaleLowerCase('pt-BR');
-  const normalizedEmail = data.email.trim().toLocaleLowerCase('pt-BR');
-  const duplicateRegistration = students.some((student) => (
-    student.id !== data.id
-    && student.matricula?.trim().toLocaleLowerCase('pt-BR') === normalizedRegistration
-  ));
-  const duplicateEmail = students.some((student) => (
-    student.id !== data.id
-    && student.email?.trim().toLocaleLowerCase('pt-BR') === normalizedEmail
-  ));
+  const validation = validateStudentInput(data, students, data.id);
+  applyValidationErrors(validation.errors);
 
-  registrationField.setCustomValidity(duplicateRegistration ? 'Esta matrícula já está cadastrada.' : '');
-  emailField.setCustomValidity(duplicateEmail ? 'Este e-mail já está cadastrado.' : '');
-
-  if (!form.checkValidity()) {
+  if (!validation.isValid || !form.checkValidity()) {
     form.reportValidity();
+    form.querySelector(':invalid')?.focus();
     return;
   }
 
-  const payload = {
-    nome: data.nome.trim(),
-    matricula: data.matricula.trim(),
-    curso: data.curso.trim(),
-    email: data.email.trim(),
-    telefone: data.telefone.trim(),
-    status: data.status
-  };
+  setSaving(true);
+  await new Promise((resolve) => window.requestAnimationFrame(resolve));
 
   try {
     if (data.id) {
-      updateRecord('estagiarios', data.id, payload);
+      updateRecord('estagiarios', data.id, validation.value);
       notify('Cadastro do estagiário atualizado.', 'success');
     } else {
-      createRecord('estagiarios', payload, 'est');
+      createRecord('estagiarios', validation.value, 'est');
       notify('Estagiário cadastrado.', 'success');
     }
 
@@ -219,10 +235,12 @@ form.addEventListener('submit', (event) => {
   } catch (error) {
     console.error('StageFlow: não foi possível salvar o estagiário.', error);
     notify('Não foi possível salvar o cadastro. Verifique o navegador e tente novamente.', 'danger');
+  } finally {
+    setSaving(false);
   }
 });
 
-[registrationField, emailField].forEach((field) => {
+[...form.elements].forEach((field) => {
   field.addEventListener('input', () => field.setCustomValidity(''));
 });
 
