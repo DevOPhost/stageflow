@@ -12,9 +12,11 @@
 
 **StageFlow** is a web system for internship management, developed as an academic innovation project in the context of the **Mandatory Supervised Internship**. The proposal organizes student records, activities, attendance, workload, and management reports in a single interface, focused on the academic monitoring routine of **UNIC — Universidade de Cuiabá**.
 
-The project was built for portfolio purposes with a complete navigation-ready monitoring base. The application works as a static frontend and is ready to be published on GitHub Pages.
+The project was built for portfolio purposes with a complete navigation-ready monitoring base. The application works as a static frontend and is published on GitHub Pages.
 
-> All data displayed in this version is simulated. The main project developed during the supervised internship remains private because it involves internal routines and institutional information.
+[View live demo](https://devophost.github.io/stageflow/) · [Source code](https://github.com/DevOPhost/stageflow)
+
+> All data displayed in this version is simulated. Changes are stored only in the browser's `localStorage`; this demonstration has no authentication, production backend, or synchronization between devices. The main project developed during the supervised internship remains private because it involves internal routines and institutional information.
 
 ## Objective
 
@@ -148,9 +150,11 @@ Distributed under the MIT License. See the [LICENSE](LICENSE) file.
 
 **StageFlow** é um sistema web para gestão de estágios desenvolvido como projeto acadêmico de inovação no contexto do **Estágio Supervisionado Obrigatório**. A proposta organiza cadastros, atividades, frequência, carga horária e relatórios gerenciais em uma interface única, com foco em uma rotina de acompanhamento acadêmico da **UNIC — Universidade de Cuiabá**.
 
-O projeto foi construído para portfólio com uma base de acompanhamento preparada para navegação completa. A aplicação funciona de forma estática, pronta para publicação no GitHub Pages.
+O projeto foi construído para portfólio com uma base de acompanhamento preparada para navegação completa. A aplicação funciona de forma estática e está publicada no GitHub Pages.
 
-> Todos os dados exibidos nesta versão são simulados. O projeto principal desenvolvido durante o estágio supervisionado permanece privado por envolver rotinas internas e informações institucionais.
+[Ver demonstração](https://devophost.github.io/stageflow/) · [Código-fonte](https://github.com/DevOPhost/stageflow)
+
+> Todos os dados exibidos nesta versão são simulados. As alterações ficam somente no `localStorage` do navegador; esta demonstração não possui autenticação, backend de produção nem sincronização entre dispositivos. O projeto principal desenvolvido durante o estágio supervisionado permanece privado por envolver rotinas internas e informações institucionais.
 
 ## Objetivo
 
