@@ -6,7 +6,7 @@ import {
   getHorasPorSemana,
   getResumo,
   loadState
-} from '../storage.js?v=14';
+} from '../storage.js?v=16';
 import {
   $,
   escapeHtml,
@@ -16,7 +16,7 @@ import {
   initLayout,
   refreshIcons,
   statusClass
-} from '../ui.js?v=13';
+} from '../ui.js?v=16';
 
 let hoursChart;
 let statusChart;

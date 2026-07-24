@@ -1,5 +1,5 @@
-import { loadState, updatePreferences } from './storage.js?v=14';
-import { initTooltips, notify, refreshIcons } from './ui.js?v=13';
+import { loadState, updatePreferences } from './storage.js?v=16';
+import { initTooltips, notify, refreshIcons } from './ui.js?v=16';
 
 const applyTheme = (theme) => {
   const safeTheme = theme === 'light' ? 'light' : 'dark';
@@ -26,6 +26,17 @@ const initLanding = () => {
 
   requestAnimationFrame(() => {
     document.body.classList.add('page-ready');
+  });
+
+  document.querySelectorAll('a[data-smooth-nav]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      document.body.classList.add('page-leaving');
+      setTimeout(() => {
+        window.location.href = link.href;
+      }, 180);
+    });
   });
 };
 

@@ -6,7 +6,7 @@ import {
   getEstagiarioNome,
   loadState,
   updateRecord
-} from '../storage.js?v=14';
+} from '../storage.js?v=16';
 import {
   $,
   confirmAction,
@@ -24,7 +24,7 @@ import {
   readForm,
   refreshIcons,
   renderEmptyState
-} from '../ui.js?v=13';
+} from '../ui.js?v=16';
 
 const timeline = $('#activityTimeline');
 const form = $('#activityForm');

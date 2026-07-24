@@ -3,7 +3,7 @@ import {
   getHorasPorEstagiario,
   getResumo,
   loadState
-} from '../storage.js?v=14';
+} from '../storage.js?v=16';
 import { exportReportPdf } from '../pdf.js?v=12';
 import {
   $,
@@ -14,7 +14,7 @@ import {
   notify,
   readForm,
   refreshIcons
-} from '../ui.js?v=13';
+} from '../ui.js?v=16';
 
 let currentReport = null;
 

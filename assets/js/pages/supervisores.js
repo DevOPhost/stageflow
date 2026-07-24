@@ -3,7 +3,7 @@ import {
   deleteRecord,
   getCollection,
   updateRecord
-} from '../storage.js?v=14';
+} from '../storage.js?v=16';
 import {
   $,
   confirmAction,
@@ -19,7 +19,7 @@ import {
   refreshIcons,
   renderEmptyState,
   sortByField
-} from '../ui.js?v=13';
+} from '../ui.js?v=16';
 
 const tableWrap = $('#supervisorsTableWrap');
 const form = $('#supervisorForm');

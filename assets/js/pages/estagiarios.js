@@ -3,7 +3,7 @@ import {
   deleteRecord,
   getCollection,
   updateRecord
-} from '../storage.js?v=15';
+} from '../storage.js?v=16';
 import { validateStudentInput } from '../studentValidation.js?v=16';
 import {
   $,
@@ -21,7 +21,7 @@ import {
   renderEmptyState,
   sortByField,
   statusClass
-} from '../ui.js?v=13';
+} from '../ui.js?v=16';
 
 const tableWrap = $('#studentsTableWrap');
 const form = $('#studentForm');

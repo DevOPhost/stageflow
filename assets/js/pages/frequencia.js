@@ -3,7 +3,7 @@ import {
   getEstagiarioById,
   loadState,
   upsertFrequencia
-} from '../storage.js?v=14';
+} from '../storage.js?v=16';
 import {
   $,
   createModal,
@@ -15,7 +15,7 @@ import {
   readForm,
   refreshIcons,
   statusClass
-} from '../ui.js?v=13';
+} from '../ui.js?v=16';
 
 const today = new Date();
 const latestAttendanceDate = loadState().frequencias

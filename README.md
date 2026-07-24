@@ -16,7 +16,7 @@ The project was built for portfolio purposes with a complete navigation-ready mo
 
 [View live demo](https://devophost.github.io/stageflow/) · [Source code](https://github.com/DevOPhost/stageflow)
 
-> All data displayed in this version is simulated. Changes are stored only in the browser's `localStorage`; this demonstration has no authentication, production backend, or synchronization between devices. The main project developed during the supervised internship remains private because it involves internal routines and institutional information.
+> All data displayed in this version is simulated. The login and registration flow is demonstrative, and both the session and changes are stored only in the browser's `localStorage`; there is no real authentication, production backend, or synchronization between devices. The main project developed during the supervised internship remains private because it involves internal routines and institutional information.
 
 ## Objective
 
@@ -34,6 +34,7 @@ The StageFlow brand was designed as a custom and minimal monogram. The continuou
 
 ## Features
 
+* Demonstrative login and registration flow with coordinator and student profiles, stored locally in the browser.
 * Administrative dashboard with metrics, workload progress, and visual indicators.
 * Student records with search, status, linked supervisors, and academic progress.
 * Supervisor records with department, contact, assigned students, and related activities.
@@ -62,6 +63,7 @@ StageFlow/
 |-- index.html
 |-- pages/
 |   |-- projeto.html
+|   |-- acesso.html
 |   |-- dashboard.html
 |   |-- estagiarios.html
 |   |-- supervisores.html
@@ -107,10 +109,10 @@ Then open:
 http://127.0.0.1:5500/index.html
 ```
 
-Administrative dashboard:
+Demonstrative access:
 
 ```text
-http://127.0.0.1:5500/pages/dashboard.html?v=7
+http://127.0.0.1:5500/pages/acesso.html
 ```
 
 ## Publishing
@@ -154,7 +156,7 @@ O projeto foi construído para portfólio com uma base de acompanhamento prepara
 
 [Ver demonstração](https://devophost.github.io/stageflow/) · [Código-fonte](https://github.com/DevOPhost/stageflow)
 
-> Todos os dados exibidos nesta versão são simulados. As alterações ficam somente no `localStorage` do navegador; esta demonstração não possui autenticação, backend de produção nem sincronização entre dispositivos. O projeto principal desenvolvido durante o estágio supervisionado permanece privado por envolver rotinas internas e informações institucionais.
+> Todos os dados exibidos nesta versão são simulados. O fluxo de login e cadastro é demonstrativo, e tanto a sessão quanto as alterações ficam somente no `localStorage` do navegador; não há autenticação real, backend de produção nem sincronização entre dispositivos. O projeto principal desenvolvido durante o estágio supervisionado permanece privado por envolver rotinas internas e informações institucionais.
 
 ## Objetivo
 
@@ -172,6 +174,7 @@ A marca do StageFlow foi desenhada como um monograma próprio e minimalista. O t
 
 ## Funcionalidades
 
+* Fluxo demonstrativo de login e cadastro com perfis de coordenação e estudante, armazenado localmente no navegador.
 * Dashboard administrativo com métricas, progresso de horas e indicadores visuais.
 * Cadastro de estagiários com consulta, status, supervisores vinculados e progresso acadêmico.
 * Cadastro de supervisores com setor, contato, alunos acompanhados e atividades relacionadas.
@@ -200,6 +203,7 @@ StageFlow/
 |-- index.html
 |-- pages/
 |   |-- projeto.html
+|   |-- acesso.html
 |   |-- dashboard.html
 |   |-- estagiarios.html
 |   |-- supervisores.html
@@ -245,10 +249,10 @@ Depois acesse:
 http://127.0.0.1:5500/index.html
 ```
 
-Painel administrativo:
+Acesso demonstrativo:
 
 ```text
-http://127.0.0.1:5500/pages/dashboard.html?v=7
+http://127.0.0.1:5500/pages/acesso.html
 ```
 
 ## Publicação

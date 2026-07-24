@@ -1,4 +1,9 @@
-import { loadState, updatePreferences } from './storage.js?v=14';
+import {
+  clearDemoSession,
+  loadState,
+  readDemoSession,
+  updatePreferences
+} from './storage.js?v=16';
 
 const menuItems = [
   { key: 'dashboard', label: 'Dashboard', file: 'dashboard.html', icon: 'layout-dashboard' },
@@ -134,8 +139,15 @@ const renderSidebar = (activePage) => {
     </nav>
     <div class="sidebar-status">
       <span class="signal-dot"></span>
-      <span>Base de apresentação acadêmica</span>
+      <span>
+        <strong data-session-role>Base de apresentação</strong>
+        <small>Dados fictícios neste navegador</small>
+      </span>
     </div>
+    <button class="sidebar-exit" type="button" data-demo-logout>
+      <i data-lucide="log-out" aria-hidden="true"></i>
+      <span>Sair da demonstração</span>
+    </button>
   `;
 };
 
@@ -211,13 +223,79 @@ export const createModal = (element) => {
 
 const syncTopbarProfile = () => {
   const state = loadState();
+  const session = readDemoSession();
+  const profile = session || state.profile;
   const userName = $('#topbarUserName');
   const userRole = $('#topbarUserRole');
   const avatar = $('#topbarAvatar');
+  const sessionRole = $('[data-session-role]');
 
-  if (userName) userName.textContent = state.profile.name;
-  if (userRole) userRole.textContent = state.profile.role;
-  if (avatar) avatar.textContent = initialsFrom(state.profile.name);
+  if (userName) userName.textContent = profile.name;
+  if (userRole) userRole.textContent = session ? `${profile.role} · demonstração` : state.profile.role;
+  if (avatar) avatar.textContent = initialsFrom(profile.name);
+  if (sessionRole) sessionRole.textContent = session ? `Sessão: ${profile.role}` : 'Acesso público';
+};
+
+const setupDemoLogout = () => {
+  $('[data-demo-logout]')?.addEventListener('click', () => {
+    clearDemoSession();
+    document.body.classList.add('page-leaving');
+    setTimeout(() => {
+      window.location.href = './acesso.html';
+    }, 180);
+  });
+};
+
+const setupPageTransitions = () => {
+  $$('a.sidebar-link, a.brand, a[data-smooth-nav]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (
+        event.defaultPrevented
+        || event.button !== 0
+        || event.metaKey
+        || event.ctrlKey
+        || event.shiftKey
+        || event.altKey
+        || link.target === '_blank'
+      ) return;
+
+      const url = new URL(link.href, window.location.href);
+      if (url.origin !== window.location.origin || url.pathname === window.location.pathname) return;
+
+      event.preventDefault();
+      document.body.classList.add('page-leaving');
+      setTimeout(() => {
+        window.location.href = url.href;
+      }, 180);
+    });
+  });
+};
+
+const setupRevealAnimations = () => {
+  const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    || document.documentElement.dataset.motion === 'reduced';
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -24px' });
+
+  const observe = () => {
+    $$('.surface-card, .toolbar, .data-panel, .chart-panel, .demo-notice').forEach((element, index) => {
+      if (element.dataset.revealReady) return;
+      element.dataset.revealReady = 'true';
+      element.classList.add('reveal-item');
+      element.style.setProperty('--reveal-delay', `${Math.min(index * 35, 210)}ms`);
+      observer.observe(element);
+    });
+  };
+
+  observe();
+  setTimeout(observe, 360);
 };
 
 const setupSidebarToggle = () => {
@@ -254,6 +332,9 @@ export const initLayout = (activePage = document.body.dataset.page) => {
   syncTopbarProfile();
   setupSidebarToggle();
   setupThemeToggle();
+  setupDemoLogout();
+  setupPageTransitions();
+  setupRevealAnimations();
   refreshIcons();
   initTooltips();
 
@@ -265,6 +346,8 @@ export const initLayout = (activePage = document.body.dataset.page) => {
     applyPreferences();
     syncTopbarProfile();
   });
+
+  window.addEventListener('stageflow:sessionchange', syncTopbarProfile);
 };
 
 export const notify = (message, type = 'success') => {

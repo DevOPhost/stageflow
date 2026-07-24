@@ -28,9 +28,12 @@ globalThis.window = {
 };
 
 const {
+  clearDemoSession,
   createRecord,
   deleteRecord,
   getCollection,
+  readDemoSession,
+  saveDemoSession,
   updateRecord
 } = await import('../assets/js/storage.js');
 
@@ -67,4 +70,31 @@ test('persiste o fluxo completo de criação, edição e exclusão', () => {
     getCollection('estagiarios').some((student) => student.id === created.id),
     false
   );
+});
+
+test('salva e encerra uma sessão demonstrativa sem expor a senha', () => {
+  persistedValues.clear();
+
+  const session = saveDemoSession({
+    name: 'Visitante StageFlow',
+    role: 'Coordenação',
+    email: 'visitante@example.com',
+    password: 'nao-deve-ser-persistida'
+  });
+
+  assert.equal(session.name, 'Visitante StageFlow');
+  assert.equal(session.role, 'Coordenação');
+  assert.equal(readDemoSession()?.email, 'visitante@example.com');
+  assert.equal('password' in readDemoSession(), false);
+
+  clearDemoSession();
+  assert.equal(readDemoSession(), null);
+});
+
+test('descarta uma sessão demonstrativa inválida', () => {
+  persistedValues.clear();
+  localStorage.setItem('stageflow.demo-session.v1', '{conteudo-invalido');
+
+  assert.equal(readDemoSession(), null);
+  assert.equal(localStorage.getItem('stageflow.demo-session.v1'), null);
 });

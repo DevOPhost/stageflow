@@ -1,6 +1,7 @@
 import { demoRecords } from './data/demoRecords.js?v=14';
 
 const STORAGE_KEY = 'stageflow.data.v8';
+const SESSION_KEY = 'stageflow.demo-session.v1';
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
 
@@ -85,6 +86,39 @@ export const resetState = () => {
 export const clearState = () => {
   localStorage.removeItem(STORAGE_KEY);
   localStorage.removeItem('stageflow.theme');
+};
+
+export const readDemoSession = () => {
+  const raw = localStorage.getItem(SESSION_KEY);
+  if (!raw) return null;
+
+  try {
+    const session = JSON.parse(raw);
+    if (!session || typeof session !== 'object' || !session.name || !session.role) return null;
+    return session;
+  } catch {
+    localStorage.removeItem(SESSION_KEY);
+    return null;
+  }
+};
+
+export const saveDemoSession = (session) => {
+  const safeSession = {
+    name: String(session.name || 'Visitante').trim(),
+    role: String(session.role || 'Coordenação').trim(),
+    email: String(session.email || '').trim().toLowerCase(),
+    mode: 'demonstracao-local',
+    createdAt: new Date().toISOString()
+  };
+
+  localStorage.setItem(SESSION_KEY, JSON.stringify(safeSession));
+  window.dispatchEvent(new CustomEvent('stageflow:sessionchange', { detail: safeSession }));
+  return safeSession;
+};
+
+export const clearDemoSession = () => {
+  localStorage.removeItem(SESSION_KEY);
+  window.dispatchEvent(new CustomEvent('stageflow:sessionchange', { detail: null }));
 };
 
 export const getCollection = (collectionName) => loadState()[collectionName] ?? [];

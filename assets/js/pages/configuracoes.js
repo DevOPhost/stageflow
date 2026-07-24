@@ -4,7 +4,7 @@ import {
   resetState,
   updatePreferences,
   updateProfile
-} from '../storage.js?v=14';
+} from '../storage.js?v=16';
 import {
   $,
   confirmAction,
@@ -13,7 +13,7 @@ import {
   notify,
   readForm,
   refreshIcons
-} from '../ui.js?v=13';
+} from '../ui.js?v=16';
 
 const profileForm = $('#profileForm');
 const preferencesForm = $('#preferencesForm');

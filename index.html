@@ -11,9 +11,9 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://unpkg.com">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="./assets/css/main.css?v=13" rel="stylesheet">
+  <link href="./assets/css/main.css?v=16" rel="stylesheet">
   <link href="./assets/css/components.css?v=14" rel="stylesheet">
-  <link href="./assets/css/pages/landing.css?v=12" rel="stylesheet">
+  <link href="./assets/css/pages/landing.css?v=16" rel="stylesheet">
   <style id="stageflow-critical-visible">body{opacity:1!important;transform:none!important;visibility:visible!important}.main-content{visibility:visible!important}.app-shell{min-height:100vh}</style></head>
 <body class="landing-page">
   <div class="landing-shell">
@@ -26,7 +26,7 @@
         <button class="icon-button" type="button" data-theme-toggle data-bs-toggle="tooltip" title="Alternar tema">
           <i data-lucide="sun-moon"></i>
         </button>
-        <a class="btn btn-outline-light" href="./pages/dashboard.html?v=7">Acessar painel</a>
+        <a class="btn btn-outline-light" href="./pages/acesso.html" data-smooth-nav>Acessar demonstração</a>
       </div>
     </nav>
 
@@ -43,8 +43,8 @@
           usando registros de apresentação e uma experiência completa de navegação pública.
         </p>
         <div class="landing-actions">
-          <a class="btn btn-primary" href="./pages/dashboard.html?v=7">
-            <i data-lucide="layout-dashboard"></i> Abrir painel
+          <a class="btn btn-primary" href="./pages/acesso.html" data-smooth-nav>
+            <i data-lucide="log-in"></i> Acessar demonstração
           </a>
           <a class="btn btn-outline-light" href="./pages/projeto.html">
             <i data-lucide="file-text"></i> Ver apresentação
@@ -73,6 +73,19 @@
       </aside>
     </main>
 
+    <section class="landing-flow" aria-labelledby="landingFlowTitle">
+      <div class="landing-flow-heading">
+        <span class="page-kicker">Uma jornada contínua</span>
+        <h2 id="landingFlowTitle">Do cadastro ao relatório final</h2>
+      </div>
+      <ol>
+        <li><span>01</span><div><strong>Organize</strong><small>Estagiários e supervisores</small></div></li>
+        <li><span>02</span><div><strong>Acompanhe</strong><small>Atividades e frequência</small></div></li>
+        <li><span>03</span><div><strong>Analise</strong><small>Indicadores de progresso</small></div></li>
+        <li><span>04</span><div><strong>Documente</strong><small>Relatórios para exportação</small></div></li>
+      </ol>
+    </section>
+
     <footer class="landing-footer">
       <span>UNIC - Universidade de Cuiabá · Ciência da Computação</span>
       <span>Versão pública de portfólio e apresentação acadêmica.</span>
@@ -83,6 +96,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script type="module" src="./assets/js/app.js?v=14"></script>
+  <script type="module" src="./assets/js/app.js?v=16"></script>
 </body>
 </html>
